@@ -75,7 +75,7 @@ Just when you create the first table, the file `mydbase.db` will be saved in the
 An example, taken from the PostgreSQL manual, follows. SQL statements can take several lines, but must be ended with a semicolon in the shell, so that the shell can learn that the command has completed. This is not needed in applications like DBeaver.
 
 ```
-CREATE TABLE person
+<b>CREATE TABLE</b> person
   (person_id INT,
   fname VARCHAR(20),
   lname VARCHAR(20),
