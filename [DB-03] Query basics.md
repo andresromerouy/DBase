@@ -92,7 +92,7 @@ Often your results include many duplicate values. To select the **unique values*
 
 <pre>
 <b>SELECT DISTINCT role
-FROM roles;
+FROM roles;</b>
 
 role    
 --------
