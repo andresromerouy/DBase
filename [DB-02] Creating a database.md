@@ -14,8 +14,7 @@ Although all database engines have the capacity to store the same types of data,
 
 SQLite uses **dynamic typing**, so the data type of a value is associated with the value itself, not with its column. The dynamic type system of SQLite is backwards compatible with the more common static type systems of other database engines in the sense that SQL statements that work on statically typed databases like PostgreSQL or MySQL work the same way in SQLite. However, the dynamic typing in SQLite allows it to do things which are not possible in the traditional rigidly typed databases.
 
-Each value stored in a SQLite database (or manipulated by the database engine) has one of the
-following storage classes:
+Each value stored in a SQLite database (or manipulated by the database engine) has one of the following storage classes:
  
 * `NULL`, a **null value**.
 
@@ -61,9 +60,9 @@ I assume in this lecture that you are using the shell, mixing SQL code with SQLi
 
 You can create a new database in SQLite, say `mydbase`, by entering in the shell the command (the symbol $ indicates that this happens out of SQLite):
 
-```
-$ sqlite3 mydbase.db
-```
+<pre>
+<b>$ sqlite3 mydbase.db</b>
+</pre>
 
 The same command will allow you later to connect to this database. You can create tables in a database to which you are connected with a `CREATE TABLE` statement. In the simplest version, a `CREATE TABLE` statement is just the specification of the names and data types of the columns from the table.
 
@@ -74,8 +73,8 @@ Just when you create the first table, the file `mydbase.db` will be saved in the
 
 An example, taken from the PostgreSQL manual, follows. SQL statements can take several lines, but must be ended with a semicolon in the shell, so that the shell can learn that the command has completed. This is not needed in applications like DBeaver.
 
-````
-**CREATE TABLE person
+<pre>
+<b>CREATE TABLE person
   (person_id INT,
   fname VARCHAR(20),
   lname VARCHAR(20),
@@ -86,13 +85,13 @@ An example, taken from the PostgreSQL manual, follows. SQL statements can take s
   state VARCHAR(20),
   country VARCHAR(20),
   postal_code VARCHAR(20)
-);**
-```
+);</b>
+</pre>
 
 Information about a table can be extracted in SQLite with a **PRAGMA statement**. PRAGMA statements are a SQL extension, specific to SQLite, used to modify the operation of the SQLite library or to query the SQLite library for internal (non-table) data.
 
-```
-PRAGMA table_info(person);
+<pre>
+<b>PRAGMA table_info(person);</b>
 
 cid  name         type         notnull  dflt_value  pk
 ---  -----------  -----------  -------  ----------  --
@@ -106,7 +105,7 @@ cid  name         type         notnull  dflt_value  pk
 7    state        VARCHAR(20)  0                    0 
 8    country      VARCHAR(20)  0                    0 
 9    postal_code  VARCHAR(20)  0                    0
-```
+</pre>
 
 *Note*. To get the output printed in this way, you must switch to the mode with the meta-command `.mode column`. In the contrary, you will get something a bit messier.
 
@@ -122,11 +121,11 @@ A report of the tables already existing in the database can be obtained by means
 
 `INSERT TO` statements are the way to provide data for a table, row by row. Values have to be supplied for, at least, all the columns that cannot have a null value. For the other columns, if you do not provide a value, they will be given a null value. The following example is clear enough. 
 
-```
-INSERT INTO person
+<pre>
+<b>INSERT INTO person
   (person_id, fname, lname, gender, birth_date) 
-VALUES (1, 'William', 'Turner', 'M', '1972-05-27');  
-```
+VALUES (1, 'William', 'Turner', 'M', '1972-05-27');</b>
+</pre>
 
 The line with the column names is not needed when you supply values for all the columns, in the same order as the columns were specified in the `CREATE TABLE` statement. Multi-row `INSERT TO` statements, with many `VALUES` lines for a single `INSERT TO` statement, separated by commas, are accepted by some database engines like SQLite. 
 
@@ -134,45 +133,45 @@ Note that values in text columns have been inputted (but not outputted) with sin
 
 `UPDATE` statements change the current values for new ones. The following example is also clear. 
 
-```
-UPDATE person
+<pre>
+<b>UPDATE person
 SET address = '1225 Tremont St.', 
   city = 'Boston',
   state = 'MA',
   country = 'USA',
   postal_code = '02138' 
-WHERE person_id = 1; 
-```
+WHERE person_id = 1;</b>
+</pre>
 
 We can now explore the content of the table person with a `SELECT` statement:
 
-```
-SELECT person_id, fname, lname, gender
-FROM person;
+<pre>
+<b>SELECT person_id, fname, lname, gender
+FROM person;</b>
 
 person_id  fname    lname   gender
 ---------  -------  ------  ------
 1          William  Turner  M     
-```
+</pre>
 
 Finally, `DELETE` statements delete rows based on a condition, specified in a `WHERE` clause. 
 
-```
-DELETE FROM person
-WHERE person_id = 1; 
-```
+<pre>
+<b>DELETE FROM person
+WHERE person_id = 1;</b>
+</pre>
 
 Now the `SELECT` statement used above will return nothing (more specifically, a table with zero rows). A `DELETE` statement can be used to empty a table, but the table remains there. To drop the table, you must use a `DROP TABLE` statement:
 
-```
-DROP TABLE person;
-```
+<pre>
+<b>DROP TABLE person;</b>
+</pre>
 
 To finish with this example, we quit SQLite with a meta-command:
 
-```
-.quit
-```
+<pre>
+<b>.quit</b>
+</pre>
 
 ## Importing data from CSV files 
 
@@ -182,14 +181,14 @@ I illustrate here the whole process of creating and populating a database from a
 
 I don’t specify a path in the `sqlite3` command, so the database file will be created in the working directory:
 
-```
-$ sqlite3 -csv films.db
-```
+<pre>
+<b>$ sqlite3 -csv films.db</b>
+</pre>
 
 The option `-csv` switches to mode `csv`, (you can also enter `.mode csv` after connecting) which is needed to import from CSV files.  Now, I create the table `films` as:
 
-```
-CREATE TABLE films (
+<pre>
+<b>CREATE TABLE films (
     id INT NOT NULL,
     title VARCHAR,
     release_year INT,
@@ -199,33 +198,34 @@ CREATE TABLE films (
     certification VARCHAR,
     gross BIGINT,
     budget BIGINT
-);
-```
+);</b>
+</pre>
 
 I’m using PostgreSQL data types. The column names are the same as those written in the first row of the file `films.csv`. I import now the data from the CSV file:
 
-```
-.import films.csv films --skip 1
-```
+<pre>
+<b>.import films.csv films --skip 1</b>
+</pre>
 
 The option `--skip 1` is used to skip the first row. Warning: this command adds the data from the CSV file to those already existing in the table, so it can create duplicates if you use it for updates. In this case, the table was initially empty, so the resulting table has as many rows as the CSV file minus one (the header).
 
 I repeat the process with the other three files:
 
-```
-CREATE TABLE people (
+<pre>
+<b>CREATE TABLE people (
     id INT NOT NULL,
     name VARCHAR,
     birthdate DATE,
     deathdate DATE
-);
-```
-```
-.import people.csv people --skip 1
-```
+);</b>
+</pre>
 
-```
-CREATE TABLE reviews (
+<pre>
+<b>.import people.csv people --skip 1</b>
+</pre>
+
+<pre>
+<b>CREATE TABLE reviews (
     id INT NOT NULL,
     film_id INT,
     num_user INT,
@@ -233,177 +233,173 @@ CREATE TABLE reviews (
     imdb_score REAL,
     num_votes INT,
     facebook_likes INT
-);
-```
+);</b>
+</pre>
 
-```
-.import reviews.csv reviews --skip 1
-```
+<pre>
+<b>.import reviews.csv reviews --skip 1</b>
+</pre>
 
-```
-CREATE TABLE roles (
+<pre>
+<b>CREATE TABLE roles (
     id INT NOT NULL,
     film_id INT,
     person_id INT,
     role VARCHAR
-);
-```
+);</b>
+</pre>
 
-```
-.import roles.csv roles --skip 1
-```
+<pre>
+<b>.import roles.csv roles --skip 1</b>
+</pre>
 
-The meta-command .tables lists the tables:
+The meta-command `.tables` lists the tables:
 
-```
-.tables 
+<pre>
+<b>.tables</b> 
 
 films    people   reviews  roles
-```
+</pre>
 
 In the CSV files, nulls come as empty cells, which are imported to SQLite as empty strings (`''`),  which is not the same. This can be corrected by using `UPDATE` commands as follows (I do it only for the columns having empty cells.
 
-```
-UPDATE films
+<pre>
+<b>UPDATE films
 SET release_year = NULL
-WHERE release_year = '';
-```
+WHERE release_year = '';</b>
+</pre>
 
-```
-UPDATE films
+<pre>
+<b>UPDATE films
 SET country = NULL
-WHERE country = '';
-```
+WHERE country = '';</b>
+</pre>
 
-```
-UPDATE films
+<pre>
+<b>UPDATE films
 SET duration = NULL
-WHERE duration = '';
-```
+WHERE duration = '';</b>
+</pre>
 
-```
-UPDATE films
+<pre>
+<b>UPDATE films
 SET language = NULL
-WHERE language = '';
-```
+WHERE language = '';</b>
+</pre>
 
-```
-UPDATE films
+<pre>
+<b>UPDATE films
 SET certification = NULL
-WHERE certification = '';
-```
+WHERE certification = '';</b>
+</pre>
 
-```
-UPDATE films
+<pre>
+<b>UPDATE films
 SET gross = NULL
-WHERE gross = '';
-```
+WHERE gross = '';</b>
+</pre>
 
-```
-UPDATE films
+<pre>
+<b>UPDATE films
 SET budget = NULL
-WHERE budget = '';
-```
+WHERE budget = '';</b>
+</pre>
 
-```
-UPDATE people
+<pre>
+<b>UPDATE people
 SET birthdate = NULL
-WHERE birthdate = '';
-```
+WHERE birthdate = '';</b>
+</pre>
 
-```
-UPDATE people
+<pre>
+<b>UPDATE people
 SET deathdate = NULL
-WHERE deathdate = '';
-```
+WHERE deathdate = '';</b>
+</pre>
 
-```
-UPDATE reviews
+<pre>
+<b>UPDATE reviews
 SET num_user = NULL
-WHERE num_user = '';
-```
+WHERE num_user = '';</b>
+</pre>
 
-```
-UPDATE reviews
+<pre>
+<b>UPDATE reviews
 SET num_critic = NULL
-WHERE num_critic = '';
-```
+WHERE num_critic = '';</b>
+</pre>
 
 Let us quit the connection now, because the export process is better managed from outside SQLite:
 
-```
-.quit
-```
+<pre>
+<b>.quit</b>
+</pre>
 
 ## Exporting data to CSV files
 
 To export data from a table of a SQLite database to a CSV file is very easy, and can be managed from the shell without (explicitly) opening a connection. With the following (shell) command, I create a copy of the original file `people.csv`.
 
-```
-$ sqlite3 -header -csv films.db 'SELECT * FROM roles;' > roles_copy.csv
-```
+<pre>
+<b>$ sqlite3 -header -csv films.db 'SELECT * FROM roles;' > roles_copy.csv</b>
+</pre>
 
 The data exported are those returned by the query `SELECT * FROM roles`, which you can replace by any other query. So, you can be very specific with data the exported. Note that, if a CSV file with the same name already exists, the data from the database are not appended at the bottom. Instead, the old file is replaced by a new version.
 
 ## SQL dumps
 
-You can back up your entire database with a text file which contains the CREATE TABLE statements and a CSV file for each table. A **SQL dump** provides an alternative approach, consisting in a single text file containing the `CREATE TABLE` statements plus the `INSERT TO` statements for populating the tables. 
+You can back up your entire database with a text file which contains the `CREATE TABLE` statements and a CSV file for each table. A **SQL dump** provides an alternative approach, consisting in a single text file containing the `CREATE TABLE` statements plus the `INSERT TO` statements for populating the tables. 
 
 Though they are quite verbose, SQL dumps are a classic of database management. All database engines can extract them in a routine way. Let me show how to extract a dump of the database `films` and to reconstruct the database from the dump. Note that there is a single dump file for the whole database, not one for every table. So, even when the file gets bigger, managing dump files is quite simple. 
 
 We start with a connection to the database:
 
-```
-$ sqlite3 films.db
-```
+<pre>
+<b>$ sqlite3 films.db</b>
+</pre>
  
 Then, we create the dump file, so far empty, by doing:
 
-```
-.output films.dump
-```
+<pre>
+<b>.output films.dump</b>
+</pre>
 
 Finally, we fill the dump file with all the SQL statements needed to rebuild the database, by doing:
 
-```
-.dump
-```
+<pre>
+<b>.dump</b>
+</pre>
 
 To recreate the database, you can either quit the current connection or open another shell window. In the fresh shell window, I create a connection to a new database:
 
-```
-$ sqlite3 films_copy.db
-```
+<pre>
+<b>$ sqlite3 films_copy.db>/b
+</pre>
 
 Then, the database is recreated by executing the code from the dump file:
 
-```
-.read films.dump
-```
+<pre>
+<b>.read films.dump</b>
+</pre>
 
 ## Homework
 
-1. Execute the query 
+1. Execute the following query and explain the result. 
 
-```
-SELECT 5/3;
-```
+<pre>
+<b>SELECT 5/3;</b>
+</pre>
 
-Did you get what you expected? Why?
+2. Execute the following queries and explain the results.
 
-2. Execute the queries
+<pre>
+<b>SELECT 2 IS NULL;</b>
+</pre>
 
-```
-SELECT 2 IS NULL; 
-```
+<pre>
+<b>SELECT NULL IS NULL;</b>
+</pre>
 
-```
-SELECT NULL IS NULL; 
-```
-
-```
-SELECT NULL = NULL;
-```
-
-Can you explain the results?
+<pre>
+<b>SELECT NULL = NULL</b>
+</pre>
  
