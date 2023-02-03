@@ -268,7 +268,7 @@ The names of the columns of the union are taken from the first table. If you wan
 
 1. List the directors of Italian films, sorted by the year in which her first Italian film was released.
 
-2. List the directors of Italian films, sorted by family name. Since SQLite does not have a function to split strings, you may combine `SUBSTRING` and INSTR to extract the family name.
+2. List the directors of Italian films, sorted by family name. Since SQLite does not have a function to split strings, you may combine `SUBSTRING` and `INSTR` to extract the family name.
 
 3. Some directors work repeatedly with the same actors (*e.g*. Martin Scorsese with Robert De Niro). Others play both roles in the same film (*e.g*. Woody Allen). Find the couples director/actor that have met in five or more films. 
 
