@@ -2,7 +2,7 @@
 
 ## Aggregate functions
 
-You often group rows, in order to perform calculations by group. SQL provides a few **aggregate functions** for this purpose. The function `AVG()`, which gives the average of a numeric column, is the most used one. 
+You often group rows, in order to perform calculations by group. SQL provides a few **aggregate functions** for this purpose. The function `AVG()`, which gives the average of a numeric column, is the most used one.
 
 <pre>
 <b>SELECT AVG(budget)
@@ -13,7 +13,7 @@ AVG(budget)
 39440906.8040724
 </pre>
 
-Other well known aggregate functions are `COUNT()`, which has already appeared in this course, `SUM()`, `MAX()` and `MIN()`. As an example, the following query extracts the maximum budget of the table `films`, in millions. 
+Other well known aggregate functions are `COUNT()`, which has already appeared in this course, `SUM()`, `MAX()` and `MIN()`. As an example, the following query extracts the maximum budget of the table `films`, in millions.
 
 <pre>
 </b>SELECT MAX(budget)/POWER(10, 6) AS max_budget
@@ -24,7 +24,7 @@ max_budget
 12215.5   
 </pre>
 
-As we have already remarked, aggregate functions cannot be used in `WHERE` clauses. Instead, they are frequently used for filtering groups in `HAVING` clauses. 
+As we have already remarked, aggregate functions cannot be used in `WHERE` clauses. Instead, they are frequently used for filtering groups in `HAVING` clauses.
 
 *Note*. You would probably tried ‘10^6’ for ‘one million’. But this expression does not work in SQLite (it does in other database systems).
 
@@ -43,19 +43,19 @@ max_budget  max_duration
 
 Nevertheless, I keep using `AS` in the aliases in all the queries in these notes, to improve the readability. You can use aliases within a query for any column or table. Renaming with an alias an existing column or table does not change the actual name in the database.
 
-*Note*. The role of `AS` in `CREATE VIEW` statements and in common table expressions is different and will be seen later in this course. 
+*Note*. The role of `AS` in `CREATE VIEW` statements and in common table expressions is different and will be seen later in this course.
 
-## What is null? 
+## What is null?
 
-Why do we need **nulls** in databases? In some cases, it is not possible or applicable to provide a value for a particular column in your table. Null is just the absence of a value. There are various flavors of null: 
+Why do we need **nulls** in databases? In some cases, it is not possible or applicable to provide a value for a particular column in your table. Null is just the absence of a value. There are various flavors of null:
 
-* Not applicable, such as the middle name for Spanish people. 
+* Not applicable, such as the middle name for Spanish people.
 
-* Value not yet known, for instance when a customer does not report his/her birthday. 
+* Value not yet known, for instance when a customer does not report his/her birthday.
 
-* Value undefined, for instance when an account is created for a product that has not yet been added to the database. 
+* Value undefined, for instance when an account is created for a product that has not yet been added to the database.
 
-*Note*. You can replace nulls by a specific value by means of an `UPDATE` statement. In a text column, you may use ‘Unknown’, or, in a numeric column, 99999. Some people prefer this to having nulls. 
+*Note*. You can replace nulls by a specific value by means of an `UPDATE` statement. In a text column, you may use ‘Unknown’, or, in a numeric column, 99999. Some people prefer this to having nulls.
 
 The following is an example of a query result containing nulls.
 
@@ -73,13 +73,13 @@ id  name                birthdate   deathdate
 5   A.J. DeLucia                             
 </pre>
 
-Note that, in the shell, nulls are not printed. So, if a character column has an empty string in one row (you can insert it as '') you cannot distinguish that entry from a null in the result set. Other SQL interfaces may print a null as [NULL] (eg in DBeaver) or similar. 
+Note that, in the shell, nulls are not printed. So, if a character column has an empty string in one row (you can insert it as '') you cannot distinguish that entry from a null in the result set. Other SQL interfaces may print a null as [NULL] (eg in DBeaver) or similar.
 
-Keep in mind that an expression can be null, but it can never be equal to null, and that two nulls are never equal to each other. So, filter conditions based on a column taking null values are written as `colname IS NULL`, not as `colname = NULL`. 
+Keep in mind that an expression can be null, but it can never be equal to null, and that two nulls are never equal to each other. So, filter conditions based on a column taking null values are written as `colname IS NULL`, not as `colname = NULL`.
 
-Moreover, expressions not involving nulls can only be true or false, but expressions involving nulls can be true, false and unknown. This means that, by evaluating the expression, you can obtain either `1` (meaning true), `0` (meaning false) or `NULL`. Also, that rows in which a column is null are neither equal nor different to a given value. So, there are three sets of rows: those for which `colname = value`, those for which `colname <> value`, and those for which `colname IS NULL`. 
+Moreover, expressions not involving nulls can only be true or false, but expressions involving nulls can be true, false and unknown. This means that, by evaluating the expression, you can obtain either `1` (meaning true), `0` (meaning false) or `NULL`. Also, that rows in which a column is null are neither equal nor different to a given value. So, there are three sets of rows: those for which `colname = value`, those for which `colname <> value`, and those for which `colname IS NULL`.
 
-Let me illustrate this with some simple queries. First, we have 4,848 rows in the table `films`. 
+Let me illustrate this with some simple queries. First, we have 4,848 rows in the table `films`.
 
 <pre>
 <b>SELECT COUNT(*)
@@ -126,9 +126,9 @@ COUNT(*)
 4029    
 </pre>
 
-## More on WHERE conditions 
+## More on WHERE conditions
 
-Simple conditions can be combined into more complex conditions, with the logical operators `AND` and `OR`. You can increase the complexity by mixing these operators. If you do so, be sure that you can manage the parentheses in the right way (if in doubt, put extra parentheses), as in the following example. 
+Simple conditions can be combined into more complex conditions, with the logical operators `AND` and `OR`. You can increase the complexity by mixing these operators. If you do so, be sure that you can manage the parentheses in the right way (if in doubt, put extra parentheses), as in the following example.
 
 <pre>
 <b>SELECT title, certification, release_year
@@ -150,11 +150,11 @@ A Nightmare on Elm Street 5: The Dream Child  X              1989
 Halloween 5                                   X              1989        
 </pre>
 
-You may feel, looking at the last query, that we are writing too much, and that we could specify this composite filter in a shorter way. The operators `BETWEEN` and `IN` help us to do that. 
+You may feel, looking at the last query, that we are writing too much, and that we could specify this composite filter in a shorter way. The operators `BETWEEN` and `IN` help us to do that.
 
-The operator `BETWEEN` provides a useful shorthand for filtering values within a specified range. Note that `BETWEEN` is inclusive, so the beginning and end values are included in the results. 
+The operator `BETWEEN` provides a useful shorthand for filtering values within a specified range. Note that `BETWEEN` is inclusive, so the beginning and end values are included in the results.
 
-The operator `IN` allows you to specify multiple values in a `WHERE` condition, instead of using multiple `OR`’s. Let us see how our query about the films for adults in the 80s gets simpler. 
+The operator `IN` allows you to specify multiple values in a `WHERE` condition, instead of using multiple `OR`’s. Let us see how our query about the films for adults in the 80s gets simpler.
 
 <pre>
 <b>SELECT title, certification, release_year
@@ -162,16 +162,18 @@ FROM films
 WHERE release_year BETWEEN 1980 AND 1989 AND certification IN ('X', ‘NC-17');</b>
 </pre>
 
-So far, we have created filters by specifying the exact values we are interested in. In the real world, we often wish to search for a pattern rather than for specific values, specially for string data. In SQL, the operator `LIKE` can be used in a `WHERE` clause to search for a pattern in a column. 
+*Note*. SQLite would accept `1980 <= release_year < 1990` instead of `release_year BETWEEN 1980 AND 1989`, but expressions involving two comparison operators are not legal in other databases.
 
-A **wildcard character** can then be used to substitute one or more characters in a string. There are two wildcard characters you can use with `LIKE`, the percentage and the underscore. The percentage wildcard character `%` will match zero, one, or many characters in text. For example, if you are curious to learn about people whose first name is Miguel, the following query will give you the answer. Note the white space after ‘Miguel’. 
+So far, we have created filters by specifying the exact values we are interested in. In the real world, we often wish to search for a pattern rather than for specific values, specially for string data. In SQL, the operator `LIKE` can be used in a `WHERE` clause to search for a pattern in a column.
+
+A **wildcard character** can then be used to substitute one or more characters in a string. There are two wildcard characters you can use with `LIKE`, the percentage and the underscore. The percentage wildcard character `%` will match zero, one, or many characters in text. For example, if you are curious to learn about people whose first name is Miguel, the following query will give you the answer. Note the white space after ‘Miguel’.
 
 <pre>
 <b>SELECT *
 FROM people
 WHERE name LIKE 'Miguel %';</b>
 
-id    name                 birthdate   deathdate 
+id    name                 birthdate   deathdate
 ----  -------------------  ----------  ----------
 5653  Miguel A. Núñez Jr.                        
 5654  Miguel Ángel Solá    1950-05-14            
@@ -181,7 +183,7 @@ id    name                 birthdate   deathdate
 5658  Miguel Sapochnik                           
 </pre>
 
-The underscore wildcard character `_` will match any single character. For instance, if you are curious about both the Alessandros and the Alessandras included in the table `people`, you can find them by means of the following query. 
+The underscore wildcard character `_` will match any single character. For instance, if you are curious about both the Alessandros and the Alessandras included in the table `people`, you can find them by means of the following query.
 
 <pre>
 <b>SELECT *
@@ -196,11 +198,11 @@ id   name                    birthdate   deathdate
 187  Alessandro Preziosi     1973-04-19           
 </pre>
 
-You can use the operator `NOT LIKE` to find the records that do not match a pattern. 
+You can use the operator `NOT LIKE` to find the records that do not match a pattern.
 
 ## Mathematics
 
-So far, we have used aggregation functions (`AVG()`, `COUNT()`, etc) in our queries. These functions take a column and return a single number. An interesting case occurs when we apply `SUM()` or `AVG()` to the 1/0 values returned from the evaluation of a comparison expression (a dummy). Suppose that you want to calculate, for every country, the proportion of films whose gross exceeds 100 million. The expression `gross > POWER(10, 8)` returns a dummy. The average of the 1’s and 0’s in the dummy gives you the proportion of rows for which the expression is true. 
+So far, we have used aggregation functions (`AVG()`, `COUNT()`, etc) in our queries. These functions take a column and return a single number. An interesting case occurs when we apply `SUM()` or `AVG()` to the 1/0 values returned from the evaluation of a comparison expression (a dummy). Suppose that you want to calculate, for every country, the proportion of films whose gross exceeds 100 million. The expression `gross > POWER(10, 8)` returns a dummy. The average of the 1’s and 0’s in the dummy gives you the proportion of rows for which the expression is true.
 
 <pre>
 <b>SELECT country, AVG(gross > POWER(10, 8)) AS prop_films
@@ -237,12 +239,12 @@ You are also familiar with **rounding** numbers to a fixed number of decimals. A
 
 ROUND(SQRT(2), 3)
 -----------------
-1.414 
+1.414
 </pre>
 
 ## String functions
 
-Besides mathematical functions, SQL also has a number of **string functions**. You are probably less familiar with them, so let us see some examples. The following query uses the function `LENGTH()`, which returns the number of characters of a string. 
+Besides mathematical functions, SQL also has a number of **string functions**. You are probably less familiar with them, so let us see some examples. The following query uses the function `LENGTH()`, which returns the number of characters of a string.
 
 <pre>
 <b>SELECT title, LENGTH(title) AS no_char
@@ -281,7 +283,7 @@ Germany - English  78
 You are already familiar with the *Find and Replace* command of text editors, which is as old as text editors themselves. The SQL version is the function `REPLACE()`. The syntax is `REPLACE(colname, pattern, replacement)`. An example follows, in which, since the certification column in the table `films` has some confusing alternatives, I use `REPLACE()` to simplify. Note that the replacement does not happen in the database, just in the report that we extract. If you wish to change this in the database, you must use an `UPDATE` statement.  
 
 <pre>
-<b>SELECT REPLACE(certification, 'Unrated', 'Not Rated') AS classification, 
+<b>SELECT REPLACE(certification, 'Unrated', 'Not Rated') AS classification,
   COUNT(*) AS no_films
 FROM films
 GROUP BY classification
@@ -308,7 +310,7 @@ M               5
 
 SQLite does not have data types `DATE` or `DATETIME` (also called `TIMESTAMP`), as the other database systems do. The best way to store times is as strings 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mmm:ss'. The functions `DATE()`, `DATETIME()` and `julianday()` will allow you to extract from those strings what you need for a specific query.
 
-In the following example, we use `DATE()` to find the people working in these films who died before 25. The difference between the two dates is returned in years, and is null if at least one of them is missing. 
+In the following example, we use `DATE()` to find the people working in these films who died before 25. The difference between the two dates is returned in years, and is null if at least one of them is missing.
 
 <pre>
 <b>SELECT name, DATE(deathdate) - DATE(birthdate) AS life
@@ -335,7 +337,7 @@ FROM people
 WHERE (julianday(deathdate) - julianday(birthdate))/365 < 25
 ORDER BY life;</b>
 
-name                   life 
+name                   life
 ---------------------  -----
 Judith Barsi           10.14
 Heather O'Rourke       12.11
@@ -351,7 +353,7 @@ Finally, note that, using dates in the string format recommended above, allows f
 FROM people
 WHERE deathdate < '1930-01-01';</b>
 
-name         birthdate   deathdate 
+name         birthdate   deathdate
 -----------  ----------  ----------
 Robert Shaw  1837-10-10  1863-07-18
 </pre>
