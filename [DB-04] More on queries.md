@@ -276,7 +276,7 @@ France - English   86
 Germany - English  78    
 </pre>
 
-*Note*. PostgreSQL and MySQL have the function `CONCAT()`. The pipes (`||`) work in PostrgreSQL as in SQLite. In MySQL, they are treated as a synonym for `OR` unless you set the `PIPES_AS_CONCAT SQL` mode.
+*Note*. PostgreSQL and MySQL have the function `CONCAT()`. The pipes (`||`) work in PostgreSQL as in SQLite. In MySQL, they are treated as a synonym for `OR` unless you set the `PIPES_AS_CONCAT SQL` mode.
 
 You are already familiar with the *Find and Replace* command of text editors, which is as old as text editors themselves. The SQL version is the function `REPLACE()`. The syntax is `REPLACE(colname, pattern, replacement)`. An example follows, in which, since the certification column in the table `films` has some confusing alternatives, I use `REPLACE()` to simplify. Note that the replacement does not happen in the database, just in the report that we extract. If you wish to change this in the database, you must use an `UPDATE` statement.  
 
@@ -304,7 +304,7 @@ M               5
 
 ## Date/time functions
 
-**Date/time** functions are frequently used in business applications. It is there where we find more differences among database systems (and programming languages), although what you effectively can do is about the same everywhere. The comments included here cover only SQLite.
+**Date/time** functions are frequently used in business applications. It is there where we find more differences among database systems (and programming languages), although what you can do is about the same everywhere. The comments included here cover only SQLite.
 
 SQLite does not have data types `DATE` or `DATETIME` (also called `TIMESTAMP`), as the other database systems do. The best way to store times is as strings 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mmm:ss'. The functions `DATE()`, `DATETIME()` and `julianday()` will allow you to extract from those strings what you need for a specific query.
 
