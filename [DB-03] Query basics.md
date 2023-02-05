@@ -24,7 +24,7 @@ In this lecture, and in the rest of this course, I use only SQL statements, so y
 
 The `SELECT` clause indicates which columns to pick, while the `FROM` clause indicates the tables from which to pick them. Selecting a single column in a query is straightforward. To select multiple columns from a table, you write the column names separate by commas. You can write the columns in any order (even repeating them). They will appear in that order.
 
-Suppose that we wish to list the titles of the table films together with their release years. Let us try this first with a slight error.
+Suppose that we wish to list the titles of the table `films` together with their release years. Let us try this first with a slight error.
 
 <pre>
 <b>SELECT title, release_year,
@@ -228,16 +228,34 @@ Mandarin  24
 In SQL, aggregate functions cannot be used in a `WHERE` condition. For example, the following query is invalid.
 
 <pre>
-<b>SELECT release_year
+<b>SELECT release_year, COUNT(title) AS titles
 FROM films
 GROUP BY release_year
-WHERE COUNT(title) > 200
-ORDER BY titles;</b>
+WHERE titles > 200
+ORDER BY titles DESC;</b>
 
-Error: near "WHERE": syntax error
+Error: in prepare, near "WHERE": syntax error
 </pre>
 
-This means that, to filter by the result of an aggregate function, you need another way. That is where the `HAVING` clause comes in. For example, the following query returns only those years in which more than 200 USA films were released.
+This means that, to filter by the result of an aggregate function, you need another way. That is where the `HAVING` clause comes in. See the corrected query below.
+
+<pre>
+<b>SELECT release_year, COUNT(title) AS titles
+FROM films
+GROUP BY release_year
+HAVING titles > 200
+ORDER BY titles DESC;</b>
+
+title                                             release_year
+------------------------------------------------  ------------
+Intolerance: Love's Struggle Throughout the Ages  1916        
+Over the Hill to the Poorhouse                    1920        
+The Big Parade                                    1925        
+Metropolis                                        1927        
+Pandora's Box                                     1929        
+</pre>
+
+It is possible to apply two filters, one at the row level and another one at the group level. For instance, the example below returns only those years in which more than 150 USA films were released.
 
 <pre>
 <b>SELECT release_year, COUNT(title) AS titles
