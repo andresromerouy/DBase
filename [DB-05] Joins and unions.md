@@ -35,7 +35,7 @@ I populate the tables by means of `INSERT INTO` statements. While Peter has two 
   ('Susan', 53), ('Peter', 60);
 
 INSERT INTO right_table VALUES ('Pluto', ‘John’),
-  'Rin Tin Tin', 'Mary'),('Lassie', 'Peter'), ('Cerberus', ‘Peter’),
+  ('Rin Tin Tin', 'Mary'), ('Lassie', 'Peter'), ('Cerberus', ‘Peter’),
   ('Milou', NULL);</b>
 </pre>
 
