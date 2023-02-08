@@ -1,13 +1,3 @@
-"""
-Title: The Sequential model
-Author: [fchollet](https://twitter.com/fchollet)
-Date created: 2020/04/12
-Last modified: 2020/04/12
-Description: Complete guide to the Sequential model.
-Accelerator: GPU
-"""
-
-"""
 # [DB-05] Joins and unions  
 
 ## Joins
@@ -283,4 +273,3 @@ The names of the columns of the union are taken from the first table. If you wan
 3. Some directors work repeatedly with the same actors (*e.g*. Martin Scorsese with Robert De Niro). Others play both roles in the same film (*e.g*. Woody Allen). Find the couples director/actor that have met in five or more films. 
 
 4. Find the top-10 actors according to Facebook by extracting a list of actors together with the average number of Facebook likes of their films, and sorting it adequately. Restrict the search to actors with at least 25 films in the database.
-"""
