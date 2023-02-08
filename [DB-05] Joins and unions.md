@@ -6,6 +6,7 @@ Last modified: 2020/04/12
 Description: Complete guide to the Sequential model.
 Accelerator: GPU
 """
+
 """
 # [DB-05] Joins and unions  
 
