@@ -346,7 +346,7 @@ Skye McCole Bartusiak  21.82
 Aaliyah                22.62
 </pre>
 
-Finally, note that, using dates in the string format recommended above, allows for comparison in an easy way.
+Finally, note that, using dates in the string format recommended above, you can compare dates in an easy way.
 
 <pre>
 <b>SELECT name, birthdate, deathdate
