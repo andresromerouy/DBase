@@ -288,11 +288,11 @@ You should insert **comments** in your scripts, since they can make easier for y
 
 You can include a comment in a statement in three ways:
 
-* Begin the comment with **two hyphens** (`--`) and proceed with the text of the comment, which cannot extend to a new line. Then, end the comment with a line break.
-
-* The same, but with a **hash sign** (`#`) instead of the hyphens. Although used in languages like Python and R, it is less frequent in SQL.
+* Begin the comment with a **double dash** (`--`) and proceed with the text of the comment, which cannot extend to a new line. Then, end the comment with a line break.
 
 * Begin the comment with a slash and an asterisk (`/*`) and proceed with the text of the comment, which can span multiple lines. Then, end the comment with an asterisk and a slash (`*/`). The opening and terminating characters need not be separated from the text by a space or a line break.
+
+*Note*. In MySQL, you can use a hash sign (`#`) instead of the double dash. Although used in languages like Python and R, this system is less frequent in SQL.
 
 ## Homework
 
