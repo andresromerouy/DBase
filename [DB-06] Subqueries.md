@@ -197,4 +197,4 @@ ORDER BY (SELECT COUNT(*)
 LIMIT 5;</b>
 </pre>
 
-Although these queries are correct, they look as if we were making things too complex. If we are interested in film directors, it may be practical to extract first a **view** containing the ID's of the directors paired to the ID's of the lms directed, and query this view. Views are discussed in the next lecture.
+Although these queries are correct, they look as if we were making things too complex. If we are interested in film directors, it may be practical to extract first a **view** containing the ID's of the directors paired to the ID's of the films directed, and query this view. Views are discussed in the next lecture.
