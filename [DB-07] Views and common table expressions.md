@@ -113,32 +113,25 @@ A query can include multiple CTE's, separated by commas, in a single `WITH` stat
   SELECT id, title, gross
   FROM films
   WHERE country = 'Germany' AND release_year > 2010),
-actors_cte AS (
+directors_cte AS (
   SELECT roles.film_id, people.name
   FROM roles
   INNER JOIN people
   ON roles.person_id = people.id
-  WHERE roles.role = 'actor')
+  WHERE roles.role = 'director')
 SELECT title, gross, name
-FROM germany_cte INNER JOIN actors_cte
-ON germany_cte.id = actors_cte.film_id
+FROM germany_cte INNER JOIN directors_cte
+ON germany_cte.id = directors_cte.film_id
 WHERE gross > 30*POWER(10, 6)
 ORDER BY title, name;</b>
 
-title                           gross     name                
-------------------------------  --------  --------------------
-30 Minutes or Less              37053924  Bianca Kajlich      
-30 Minutes or Less              37053924  Dilshad Vadsaria    
-30 Minutes or Less              37053924  Fred Ward           
-Hansel & Gretel: Witch Hunters  55682070  Derek Mears         
-Hansel & Gretel: Witch Hunters  55682070  Ingrid Bolsoe Berdal
-Hansel & Gretel: Witch Hunters  55682070  Jeremy Renner       
-Resident Evil: Retribution      42345531  Bingbing Li         
-Resident Evil: Retribution      42345531  Boris Kodjoe        
-Resident Evil: Retribution      42345531  Milla Jovovich      
+title                           gross     name              
+------------------------------  --------  ------------------
+30 Minutes or Less              37053924  Ruben Fleischer    
+Hansel & Gretel: Witch Hunters  55682070  Tommy Wirkola       
+Resident Evil: Retribution      42345531  Paul W.S. Anderson    
 </pre>
 
 ## Homework
 
 Create a view joining the tables `films` and `reviews`, so it contains, for every film, all the data from the table reviews.
-
