@@ -106,7 +106,7 @@ id    title                           duration  gross     budget
 4190  Hansel & Gretel: Witch Hunters  98        55682070  50000000
 </pre>
 
-A query can include multiple CTE's, separated by commas, in a single `WITH` statement. For example, if we want to expand our previous query to include the names of the actors that have participated in the film, we could add a second CTE to have the columns `film_id` and `name` together.
+A query can include multiple CTE's, separated by commas, in a single `WITH` statement. For example, if we want to expand our previous query to include the name of the director of the film, we could add a second CTE to have the columns `film_id` and `name` together.
 
 <pre>
 <b>WITH germany_cte AS (
