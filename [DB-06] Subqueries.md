@@ -92,7 +92,7 @@ Vicky Cristina Barcelona  2008          23213577
 Match Point               2005          23089926
 </pre>
 
-Instead of `IN`, you can use `NOT IN` when the subquery returns a list containing those records you wish to exclude. 
+Instead of `IN`, you can use `NOT IN` when the subquery returns a list containing those records you wish to exclude.
 
 So far, all our examples included a single subquery which returned a single column with one or more rows. In certain situations, however, you can use a subquery which returns multiple columns, or multiple single-column subqueries, as in the following example.
 
@@ -121,12 +121,12 @@ The subqueries inside a `SELECT` clause are not as common as those inside a `WHE
 <b>SELECT name, (SELECT COUNT(*)
   FROM roles
   WHERE roles.person_id = people.id
-  GROUP BY person_id) AS no_films
+  GROUP BY person_id) AS no_roles
 FROM people
 ORDER BY no_films DESC
 LIMIT 5;</b>
 
-name            no_films
+name            no_roles
 --------------  --------
 Robert De Niro  53      
 Morgan Freeman  43      
