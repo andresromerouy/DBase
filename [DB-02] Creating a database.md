@@ -4,7 +4,7 @@
 
 This lecture deals with the **schema statements** used to create a database and the **data statements** used to populate it. There is not much detail in it, since this course is more concerned with how to query a database than with how to build it.
 
-The schema statements are the SQL statements that implement the **database schema**, which is a formal language description of the structure of the database and its components. The schema is, essentially, a catalog of tables and their con gurations. When we design a database, we develop the schema, listing the tables, then listing every column of a table and setting the data type. Finally, we specify the **indexes** and **constraints**. The relationships are set by **foreign key constraints**.
+The schema statements are the SQL statements that implement the **database schema**, which is a formal language description of the structure of the database and its components. The schema is, essentially, a catalog of tables and their configurations. When we design a database, we develop the schema, listing the tables, then listing every column of a table and setting the data type. Finally, we specify the **indexes** and **constraints**. The relationships are set by **foreign key constraints**.
 
 *Note*. In most database engines, but not in SQLite, indexes and constraints can be created and modified, for existing tables, with `ALTER TABLE` statements.
 
