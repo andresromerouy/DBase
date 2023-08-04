@@ -1,4 +1,4 @@
-# [DB-02] Creating a database]
+# [DB-02] Creating a database
 
 ## Schema statements
 
@@ -42,7 +42,7 @@ The rules to establish the affinity are:
 
 Since you may want to manage text data in languages other English, let me refresh the **encoding** basics. Every character is encoded by a number in the computer. There is a collection of 128 characters which are always encoded in the same way. These are the **ASCII characters**. If you write exclusively in English, this is probably all you need. Other characters, such as the Spanish ‘ñ’ are generically called **special characters**. Different encoding systems encode these characters in different ways. Changing the encoding system in a text le is easy, but you may have to take a look at the Help les of your text editor.
 
-The top popular encoding system is **UTF-8**, which is the default in open source database engines like SQLite, PostgreSQL and MySQL. Nevertheless, many Windows applications use an alternative system. To make things worse, this alternative system is country speci c. The variant used in Western countries is called Windows-1252. If your database contains text involving special characters, they will probably appear on your screen in the right way, but be careful when importing data from text les (such as CSV les), which may not be encoded in UTF-8.
+The top popular encoding system is **UTF-8**, which is the default in open source database engines like SQLite, PostgreSQL and MySQL. Nevertheless, many Windows applications use an alternative system. To make things worse, this alternative system is country specific. The variant used in Western countries is called Windows-1252. If your database contains text involving special characters, they will probably appear on your screen in the right way, but be careful when importing data from text les (such as CSV les), which may not be encoded in UTF-8.
 
 ## Dates and times
 
@@ -129,7 +129,7 @@ VALUES (1, 'William', 'Turner', 'M', '1972-05-27');</b>
 
 The line with the column names is not needed when you supply values for all the columns, in the same order as the columns were specified in the `CREATE TABLE` statement. Multi-row `INSERT TO` statements, with many `VALUES` lines for a single `INSERT TO` statement, separated by commas, are accepted by some database engines like SQLite. 
 
-Note that values in text columns have been inputted (but not outputted) with single quotes. Double quotes have a different role in SQL. They are used for column names. 
+Note that the values in the text columns have been inputted (but not outputted) with single quotes. Double quotes have a different role in SQL. They are used for column names. 
 
 `UPDATE` statements change the current values for new ones. The following example is also clear. 
 
@@ -372,7 +372,7 @@ Finally, we fill the dump file with all the SQL statements needed to rebuild the
 To recreate the database, you can either quit the current connection or open another shell window. In the fresh shell window, I create a connection to a new database:
 
 <pre>
-<b>$ sqlite3 films_copy.db>/b
+<b>$ sqlite3 films_copy.db</b>
 </pre>
 
 Then, the database is recreated by executing the code from the dump file:
