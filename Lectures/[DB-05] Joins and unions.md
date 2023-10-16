@@ -169,7 +169,7 @@ FROM roles AS r1 JOIN roles AS r2 ON r1.film_id = r2.film_id
   JOIN people AS p1 ON r1.person_id = p1.id
   JOIN people AS p2 ON r2.person_id = p2.id
 WHERE r1.role = 'director' AND r2.role = 'actor' 
-  AND p1.name = 'Martin Scorsese’
+  AND p1.name = 'Martin Scorsese'
 GROUP BY actor
 HAVING COUNT(*) > 1
 ORDER BY no_films DESC;</b>
