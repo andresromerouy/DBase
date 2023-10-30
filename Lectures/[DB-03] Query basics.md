@@ -8,7 +8,7 @@ A query can have, in addition to the `SELECT` clause, which opens the query, the
 
 In the `FROM` clause we name the tables from where the columns mentioned in the `SELECT` clause are taken. This clause gets more complex when the query involves more than one table and these tables have common columns (with the same or a different name). This is called a **join**. This lecture and the next one are restricted to queries from a single table, leaving the joins for later.
 
-The `WHERE` clause allows you to lter out some of the rows, based on the values of one or more columns. This is managed by specifying a **condition**. Only the rows satisfying that condition are retained.
+The `WHERE` clause allows you to filter out some of the rows, based on the values of one or more columns. This is managed by specifying a **condition**. Only the rows satisfying that condition are retained.
 
 The `GROUP BY` clause allows you to group rows based on one or more columns. Commonly, `GROUP BY` is used with **aggregate functions** such as `COUNT` or `AVG`. It comes after `FROM` and (eventually) `WHERE`.
 
